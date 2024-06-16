@@ -9,53 +9,34 @@
       margin: 0;
       overflow: hidden;
     }
-    iframe {
-      border: none;
-      transition: width 0.5s, height 0.5s; /* Smooth transition */
-    }
-    /* Default full-screen size */
-    #websiteFrame.fullscreen {
+    .iframe-container {
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
-    /* Smaller size for nptel.html */
-    #websiteFrame.small {
-      width: 50vw;
-      height: 50vh;
+    iframe {
+      width: 400%;
+      height: 400%;
+      border: none;
+      transform: scale(0.25);
+      transform-origin: 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   </style>
 </head>
 <body>
 
-<iframe id="websiteFrame" src="https://ntpel.co.in/" class="fullscreen"></iframe>
+<div class="iframe-container">
+  <iframe id="websiteFrame" src="https://ntpel.co.in/"></iframe>
+</div>
 
 <script>
-  const websites = [
-    'https://ntpel.co.in/',
-    'nptel.html',
-    // Add more URLs as needed
-  ];
-  let currentIndex = 0;
-
-  function switchWebsite() {
-    currentIndex = (currentIndex + 1) % websites.length;
-    const iframe = document.getElementById('websiteFrame');
-    iframe.src = websites[currentIndex];
-    
-    // Apply different size if it's nptel.html
-    if (websites[currentIndex] === 'nptel.html') {
-      iframe.classList.remove('fullscreen');
-      iframe.classList.add('small');
-    } else {
-      iframe.classList.remove('small');
-      iframe.classList.add('fullscreen');
-    }
-  }
-
-  setTimeout(switchWebsite, 3000);  // Initial switch after 3 seconds
-
-  // You can set a recurring switch if needed
-  // setInterval(switchWebsite, 3000);  // Switch every 3 seconds
+  setTimeout(function() {
+    document.getElementById('websiteFrame').src = 'nptel.html';
+  }, 3000);
 </script>
 
 </body>
