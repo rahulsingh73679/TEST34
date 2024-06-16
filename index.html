@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Switcher</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<iframe id="websiteFrame" src="https://ntpel.co.in/"></iframe>
+
+<script>
+  const websites = [
+    'https://ntpel.co.in/',
+    'nptel.html',
+    // Add more URLs as needed
+  ];
+  let currentIndex = 0;
+
+  function switchWebsite() {
+    currentIndex = (currentIndex + 1) % websites.length;
+    document.getElementById('websiteFrame').src = websites[currentIndex];
+  }
+
+  setTimeout(switchWebsite, 3000);  // Initial switch after 3 seconds
+
+  // You can set a recurring switch if needed
+  // setInterval(switchWebsite, 3000);  // Switch every 3 seconds
+</script>
+
+</body>
+</html>
