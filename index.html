@@ -10,15 +10,24 @@
       overflow: hidden;
     }
     iframe {
+      border: none;
+      transition: width 0.5s, height 0.5s; /* Smooth transition */
+    }
+    /* Default full-screen size */
+    #websiteFrame.fullscreen {
       width: 100vw;
       height: 100vh;
-      border: none;
+    }
+    /* Smaller size for nptel.html */
+    #websiteFrame.small {
+      width: 50vw;
+      height: 50vh;
     }
   </style>
 </head>
 <body>
 
-<iframe id="websiteFrame" src="https://ntpel.co.in/"></iframe>
+<iframe id="websiteFrame" src="https://ntpel.co.in/" class="fullscreen"></iframe>
 
 <script>
   const websites = [
@@ -30,7 +39,17 @@
 
   function switchWebsite() {
     currentIndex = (currentIndex + 1) % websites.length;
-    document.getElementById('websiteFrame').src = websites[currentIndex];
+    const iframe = document.getElementById('websiteFrame');
+    iframe.src = websites[currentIndex];
+    
+    // Apply different size if it's nptel.html
+    if (websites[currentIndex] === 'nptel.html') {
+      iframe.classList.remove('fullscreen');
+      iframe.classList.add('small');
+    } else {
+      iframe.classList.remove('small');
+      iframe.classList.add('fullscreen');
+    }
   }
 
   setTimeout(switchWebsite, 3000);  // Initial switch after 3 seconds
